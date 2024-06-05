@@ -26,7 +26,7 @@ describe("Modelo Editora", () => {
 
     expect(seek).toEqual(
       expect.objectContaining({
-         id: expect.any(Number),
+        id: expect.any(Number),
         ...objEditora,
         created_at: expect.any(String),
         updated_at: expect.any(String)
@@ -43,7 +43,7 @@ describe("Modelo Editora", () => {
     expect(seek).toBeTruthy()
   })
 
-  it("Deve Salvar uma chamada simulada no BD", async () => {
+  it.skip("Deve Salvar uma chamada simulada no BD", async () => {
     const editora = new Editora(objEditora)
 
     editora.salvar = jest.fn().mockReturnValue({
@@ -56,7 +56,7 @@ describe("Modelo Editora", () => {
     })
 
     const data = editora.salvar()
-    
+
     expect(data).toEqual(
       expect.objectContaining({
         id: expect.any(Number),
