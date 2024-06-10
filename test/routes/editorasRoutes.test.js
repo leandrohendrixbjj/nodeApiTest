@@ -32,8 +32,8 @@ describe('GET em editoras', () => {
       nome:'Alura_01',
       cidade: 'Sao Paulo',
       email: 'alura01@gmail.com'
-    })
-    .expect(201)
+    }).expect(201)
+    expect(data.body.content.email).toEqual('alura02@gmail.com')
   }) 
 
   it.skip("Deve remover uma Editora", async () => {
