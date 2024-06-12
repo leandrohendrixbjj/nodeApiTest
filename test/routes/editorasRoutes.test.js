@@ -5,7 +5,7 @@ import request from 'supertest'
 let server
 
 beforeEach(() => {
-  const port = 3000
+  const port = 3001
   server = app.listen(port)
 })
 
@@ -15,7 +15,7 @@ afterEach(() => {
 
 describe('GET em editoras', () => {
   
-  it.skip("Deve retornar lista de Editoras", async () => {
+  it.skip("GET /api/editoras", async () => {
     const data = await request(app)
       .get('/api/editoras')
       .set('Accept', 'application/json')
@@ -25,7 +25,15 @@ describe('GET em editoras', () => {
       expect(typeof data.body).toBe('object')
   })
 
-  it.skip("Deve add uma Editora", async () => {
+  it("GET /api/editoras/{id}", async() => {
+    const data = await request(app)
+    .get('/api/editoras/1')
+    .expect(200)
+
+    expect(data.body).toBeTruthy()
+  })
+
+  it.skip("POST /api/editoras", async () => {
     const data = await request(app)
     .post('/api/editoras')
     .send({
@@ -36,17 +44,23 @@ describe('GET em editoras', () => {
     expect(data.body.content.email).toEqual('alura02@gmail.com')
   }) 
 
-  it.skip("Deve remover uma Editora", async () => {
+  it.skip("POST /api/editoras", async () => {
+    const data = await request(app)
+    .post('/api/editoras')
+    .send({})
+    .expect(400)
+  })
+
+  it("PUT /api/editoras/{id}", async () => {
+    const data = await request(app)
+    .put('/api/editoras/4')
+    .send({nome: "House of The Dragon"})
+    .expect(204)
+  })
+
+  it.skip("DELETE /api/editoras/{id}", async () => {
     const data = await request(app)
     .delete('/api/editoras/5')
     .expect(200)
-  })
-
-  it("Deve retornar uma editora", async() => {
-    const data = await request(app)
-    .get('/api/editoras/1')
-    .expect(200)
-
-    expect(data.body).toBeTruthy()
-  })
+  })  
 })
