@@ -26,7 +26,7 @@ describe("Modelo Editora", () => {
 
     expect(seek).toEqual(
       expect.objectContaining({
-        id: expect.any(Number),
+         id: expect.any(Number),
         ...objEditora,
         created_at: expect.any(String),
         updated_at: expect.any(String)
